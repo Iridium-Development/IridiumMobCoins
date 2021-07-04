@@ -5,6 +5,6 @@ main: com.iridium.iridiummobcoins.IridiumMobCoins
 api-version: '1.13'
 author: Peaches_MLG
 commands:
-  iridiummobcoins:
+  IridiumMobCoins:
     aliases: [ "mobcoins", "mc" ]
     description: Main plugin command

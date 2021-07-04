@@ -73,6 +73,17 @@ public class DatabaseManager {
         });
     }
 
+    public CompletableFuture<User> getUser(String username) {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return userDao.queryBuilder().where().eq("name", username).queryForFirst();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            return null;
+        });
+    }
+
     public void saveUser(@NotNull User user) {
         Bukkit.getScheduler().runTaskAsynchronously(IridiumMobCoins.getInstance(), () -> {
             try {

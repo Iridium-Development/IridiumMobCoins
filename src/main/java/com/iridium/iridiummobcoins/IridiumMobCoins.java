@@ -1,8 +1,11 @@
 package com.iridium.iridiummobcoins;
 
 import com.iridium.iridiumcore.IridiumCore;
+import com.iridium.iridiummobcoins.commands.CommandManager;
 import com.iridium.iridiummobcoins.configs.Configuration;
+import com.iridium.iridiummobcoins.configs.Messages;
 import com.iridium.iridiummobcoins.configs.SQL;
+import com.iridium.iridiummobcoins.listeners.EntityDeathListener;
 import com.iridium.iridiummobcoins.listeners.PlayerJoinListener;
 import com.iridium.iridiummobcoins.managers.DatabaseManager;
 import com.iridium.iridiummobcoins.placeholders.ClipPlaceholderAPI;
@@ -19,8 +22,10 @@ public class IridiumMobCoins extends IridiumCore {
     private static IridiumMobCoins instance;
 
     private DatabaseManager databaseManager;
+    private CommandManager commandManager;
 
     private Configuration configuration;
+    private Messages messages;
     private SQL sql;
 
     @Override
@@ -33,6 +38,8 @@ public class IridiumMobCoins extends IridiumCore {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
+        this.commandManager = new CommandManager("IridiumMobCoins");
 
         // Register Placeholders Support
         Plugin MVDWPlaceholderAPI = getServer().getPluginManager().getPlugin("MVdWPlaceholderAPI");
@@ -58,18 +65,21 @@ public class IridiumMobCoins extends IridiumCore {
     @Override
     public void loadConfigs() {
         this.configuration = getPersist().load(Configuration.class);
+        this.messages = getPersist().load(Messages.class);
         this.sql = getPersist().load(SQL.class);
     }
 
     @Override
     public void saveConfigs() {
         getPersist().save(configuration);
+        getPersist().save(messages);
         getPersist().save(sql);
     }
 
     @Override
     public void registerListeners() {
         Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
+        Bukkit.getPluginManager().registerEvents(new EntityDeathListener(), this);
     }
 
     public static IridiumMobCoins getInstance() {
