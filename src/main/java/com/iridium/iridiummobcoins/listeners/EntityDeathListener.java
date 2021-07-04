@@ -1,6 +1,8 @@
 package com.iridium.iridiummobcoins.listeners;
 
+import com.iridium.iridiumcore.utils.StringUtils;
 import com.iridium.iridiummobcoins.IridiumMobCoins;
+import org.apache.commons.lang.WordUtils;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,6 +20,11 @@ public class EntityDeathListener implements Listener {
         if (killer != null && mobCoinDropChances.containsKey(event.getEntityType())) {
             double random = Math.random() * 100;
             if (random <= mobCoinDropChances.get(event.getEntityType())) {
+                killer.sendMessage(StringUtils.color(IridiumMobCoins.getInstance().getMessages().receivedMobCoinFromKillingMob
+                        .replace("%prefix%", IridiumMobCoins.getInstance().getConfiguration().prefix)
+                        .replace("%entity%", WordUtils.capitalizeFully(event.getEntityType().name().toLowerCase().replace("_", " ")))
+                        .replace("%amount%", "1")
+                ));
                 IridiumMobCoins.getInstance().getDatabaseManager().getUser(killer.getUniqueId()).thenAccept(user ->
                         user.setMobcoins(user.getMobcoins() + 1)
                 );
