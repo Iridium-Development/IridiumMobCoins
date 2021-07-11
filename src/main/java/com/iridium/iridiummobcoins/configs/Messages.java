@@ -12,7 +12,7 @@ public class Messages {
     public String mustBeANumber = "%prefix% &7That is not a number.";
     public String unknownCommand = "%prefix% &7Unknown Command, Try /is help.";
     public String helpCommandHeader = "&8===== &6&lIridumMobCoins Help &r&8=====";
-    public String helpCommandMessage = "<GRADIENT:FBD72B>/mc %command%</GRADIENT:F9484A>&r: &7%description%";
+    public String helpCommandMessage = "<GRADIENT:FFDD00>/mc %command%</GRADIENT:FBB034>&r: &7%description%";
     public String helpCommandFooter = " &7Page %page% of %max_page% ";
     public String helpCommandPreviousPage = "&b<<";
     public String helpCommandNextPage = "&b>>";

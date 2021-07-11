@@ -10,7 +10,7 @@ import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Configuration {
-    public String prefix = "<GRADIENT:FBD72B>&lIridiumMobCoins</GRADIENT:F9484A> &8»";
+    public String prefix = "<GRADIENT:FFDD00>&lIridiumMobCoins</GRADIENT:FBB034> &8»";
     public String placeholderDefaultValue = "N/A";
     public XSound inventoryOpenSound = XSound.BLOCK_NOTE_BLOCK_PLING;
     public Map<EntityType, Double> mobCoinDropChances = ImmutableMap.<EntityType, Double>builder()
