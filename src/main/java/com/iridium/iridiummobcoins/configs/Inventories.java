@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class Inventories {
-    public NoItemGUI mobCoinsGUI = new NoItemGUI(45, "&7MobCoins", new Background(ImmutableMap.<Integer, Item>builder()
+    public NoItemGUI mobCoinsGUI = new NoItemGUI(54, "&7MobCoins", new Background(ImmutableMap.<Integer, Item>builder()
             .put(0, new Item(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()))
             .put(1, new Item(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()))
             .put(2, new Item(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()))
@@ -27,10 +27,12 @@ public class Inventories {
             .put(27, new Item(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()))
             .put(35, new Item(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()))
             .put(36, new Item(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()))
-            .put(37, new Item(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()))
-            .put(38, new Item(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()))
-            .put(39, new Item(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()))
-            .put(40, new Item(XMaterial.BOOK, 1, "&6&lMobCoins Info", Arrays.asList(
+            .put(44, new Item(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()))
+            .put(45, new Item(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()))
+            .put(46, new Item(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()))
+            .put(47, new Item(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()))
+            .put(48, new Item(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()))
+            .put(49, new Item(XMaterial.BOOK, 1, "&6&lMobCoins Info", Arrays.asList(
                     "&7MobCoins can be earned by killing &c&lHOSTILE&7 mobs.",
                     "&7You can spend your mobcoins in this shop to buy cool items",
                     "",
@@ -40,10 +42,11 @@ public class Inventories {
                     "&6&l * &6Creeper &75%",
                     "&6&l * &6Enderman &75%"
             )))
-            .put(41, new Item(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()))
-            .put(42, new Item(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()))
-            .put(43, new Item(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()))
-            .put(44, new Item(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()))
+            .put(50, new Item(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()))
+            .put(51, new Item(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()))
+            .put(52, new Item(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()))
+            .put(53, new Item(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()))
+            .put(54, new Item(XMaterial.BLACK_STAINED_GLASS_PANE, 1, " ", Collections.emptyList()))
             .build(), new Item(XMaterial.WHITE_STAINED_GLASS_PANE, 1, " ", Collections.emptyList())));
 
 }

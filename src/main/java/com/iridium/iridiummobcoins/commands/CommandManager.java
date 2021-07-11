@@ -86,6 +86,7 @@ public class CommandManager implements CommandExecutor, TabCompleter {
         if (args.length == 0) {
             if (commandSender instanceof Player) {
                 Player player = (Player) commandSender;
+                IridiumMobCoins.getInstance().getConfiguration().inventoryOpenSound.play(player);
                 player.openInventory(new MobCoinsGUI(player).getInventory());
             } else {
                 new HelpCommand().execute(commandSender, args);
