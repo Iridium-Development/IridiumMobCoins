@@ -37,11 +37,9 @@ public final class User {
 
     public void setName(String name) {
         this.name = name;
-        IridiumMobCoins.getInstance().getDatabaseManager().saveUser(this);
     }
 
     public void setMobcoins(int mobcoins) {
         this.mobcoins = mobcoins;
-        IridiumMobCoins.getInstance().getDatabaseManager().saveUser(this);
     }
 }

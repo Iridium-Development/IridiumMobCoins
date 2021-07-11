@@ -1,6 +1,7 @@
 package com.iridium.iridiummobcoins.configs;
 
 import com.google.common.collect.ImmutableMap;
+import com.iridium.iridiumcore.utils.NumberFormatter;
 import org.bukkit.entity.EntityType;
 
 import java.util.Map;
@@ -14,4 +15,5 @@ public class Configuration {
             .put(EntityType.CREEPER, 5.00)
             .put(EntityType.ENDERMAN, 5.00)
             .build();
+    public NumberFormatter numberFormatter = new NumberFormatter();
 }

@@ -2,7 +2,9 @@ package com.iridium.iridiummobcoins.commands;
 
 import com.iridium.iridiumcore.utils.StringUtils;
 import com.iridium.iridiummobcoins.IridiumMobCoins;
+import com.iridium.iridiummobcoins.database.User;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -41,28 +43,28 @@ public class SetCommand extends Command {
             ));
             return;
         }
-        IridiumMobCoins.getInstance().getDatabaseManager().getUser(args[1]).thenAccept(user -> {
-            if (user != null) {
-                user.setMobcoins(Math.max(amount, 0));
-                sender.sendMessage(StringUtils.color(IridiumMobCoins.getInstance().getMessages().setPlayerMobCoins
+        OfflinePlayer offlinePlayer = Bukkit.getServer().getOfflinePlayer(args[1]);
+        if (offlinePlayer.hasPlayedBefore()) {
+            User user = IridiumMobCoins.getInstance().getDatabaseManager().getUser(offlinePlayer.getUniqueId());
+            user.setMobcoins(Math.max(amount, 0));
+            sender.sendMessage(StringUtils.color(IridiumMobCoins.getInstance().getMessages().setPlayerMobCoins
+                    .replace("%prefix%", IridiumMobCoins.getInstance().getConfiguration().prefix)
+                    .replace("%player%", user.getName())
+                    .replace("%amount%", String.valueOf(amount))
+            ));
+            Player player = Bukkit.getPlayer(user.getUuid());
+            if (player != null) {
+                player.sendMessage(StringUtils.color(IridiumMobCoins.getInstance().getMessages().setMobCoins
                         .replace("%prefix%", IridiumMobCoins.getInstance().getConfiguration().prefix)
                         .replace("%player%", user.getName())
                         .replace("%amount%", String.valueOf(amount))
                 ));
-                Player player = Bukkit.getPlayer(user.getUuid());
-                if (player != null) {
-                    player.sendMessage(StringUtils.color(IridiumMobCoins.getInstance().getMessages().setMobCoins
-                            .replace("%prefix%", IridiumMobCoins.getInstance().getConfiguration().prefix)
-                            .replace("%player%", user.getName())
-                            .replace("%amount%", String.valueOf(amount))
-                    ));
-                }
-            } else {
-                sender.sendMessage(StringUtils.color(IridiumMobCoins.getInstance().getMessages().unknownPlayer
-                        .replace("%prefix%", IridiumMobCoins.getInstance().getConfiguration().prefix)
-                ));
             }
-        });
+        } else {
+            sender.sendMessage(StringUtils.color(IridiumMobCoins.getInstance().getMessages().unknownPlayer
+                    .replace("%prefix%", IridiumMobCoins.getInstance().getConfiguration().prefix)
+            ));
+        }
     }
 
     /**

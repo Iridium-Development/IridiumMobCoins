@@ -8,10 +8,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 public class PlayerJoinListener implements Listener {
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event){
-        IridiumMobCoins.getInstance().getDatabaseManager().getUser(event.getPlayer().getUniqueId()).thenAccept(user ->
-                user.setName(event.getPlayer().getName())
-        );
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        IridiumMobCoins.getInstance().getDatabaseManager().getUser(event.getPlayer().getUniqueId()).setName(event.getPlayer().getName());
     }
 
 }

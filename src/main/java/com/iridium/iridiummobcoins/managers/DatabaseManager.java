@@ -16,8 +16,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
 
 public class DatabaseManager {
 
@@ -25,11 +25,15 @@ public class DatabaseManager {
 
     private final Dao<User, UUID> userDao;
 
+    private final HashMap<UUID, User> users = new HashMap<>();
+
+    private final ConnectionSource connectionSource;
+
     public DatabaseManager() throws SQLException {
         LoggerFactory.setLogBackendFactory(new NullLogBackend.NullLogBackendFactory());
         String databaseURL = getDatabaseURL();
 
-        ConnectionSource connectionSource = new JdbcConnectionSource(
+        connectionSource = new JdbcConnectionSource(
                 databaseURL,
                 SQL_CONFIG.username,
                 SQL_CONFIG.password,
@@ -40,6 +44,15 @@ public class DatabaseManager {
 
         this.userDao = DaoManager.createDao(connectionSource, User.class);
 
+        userDao.setAutoCommit(connectionSource.getReadWriteConnection(null), false);
+
+        try {
+            userDao.queryForAll().forEach(user -> {
+                users.put(user.getUuid(), user);
+            });
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     private @NotNull String getDatabaseURL() {
@@ -59,39 +72,26 @@ public class DatabaseManager {
         throw new RuntimeException("How did we get here?");
     }
 
-    public CompletableFuture<User> getUser(UUID uuid) {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                User user = userDao.queryBuilder().where().eq("uuid", uuid).queryForFirst();
-                if (user != null) return user;
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-            User user = new User(uuid, "");
-            saveUser(user);
-            return user;
-        });
+    public User getUser(UUID uuid) {
+        if (!users.containsKey(uuid)) {
+            users.put(uuid, new User(uuid, ""));
+        }
+        return users.get(uuid);
     }
 
-    public CompletableFuture<User> getUser(String username) {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return userDao.queryBuilder().where().eq("name", username).queryForFirst();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-            return null;
-        });
-    }
-
-    public void saveUser(@NotNull User user) {
-        Bukkit.getScheduler().runTaskAsynchronously(IridiumMobCoins.getInstance(), () -> {
+    public void saveUsers() {
+        for (User user : users.values()) {
             try {
                 userDao.createOrUpdate(user);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-        });
+        }
+        try {
+            userDao.commit(connectionSource.getReadWriteConnection(null));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
 }

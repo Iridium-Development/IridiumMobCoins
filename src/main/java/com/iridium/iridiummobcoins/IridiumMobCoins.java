@@ -1,6 +1,7 @@
 package com.iridium.iridiummobcoins;
 
 import com.iridium.iridiumcore.IridiumCore;
+import com.iridium.iridiumcore.utils.NumberFormatter;
 import com.iridium.iridiummobcoins.commands.CommandManager;
 import com.iridium.iridiummobcoins.configs.Configuration;
 import com.iridium.iridiummobcoins.configs.Messages;
@@ -55,6 +56,8 @@ public class IridiumMobCoins extends IridiumCore {
             }
         }
 
+        Bukkit.getScheduler().runTaskTimerAsynchronously(this, () -> getDatabaseManager().saveUsers(), 60 * 20, 60 * 20);
+
         this.getLogger().info("-------------------------------");
         this.getLogger().info("");
         this.getLogger().info(this.getDescription().getName() + " Enabled!");
@@ -77,9 +80,18 @@ public class IridiumMobCoins extends IridiumCore {
     }
 
     @Override
+    public void saveData() {
+        getDatabaseManager().saveUsers();
+    }
+
+    @Override
     public void registerListeners() {
         Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
         Bukkit.getPluginManager().registerEvents(new EntityDeathListener(), this);
+    }
+
+    public NumberFormatter getNumberFormatter() {
+        return configuration.numberFormatter;
     }
 
     public static IridiumMobCoins getInstance() {

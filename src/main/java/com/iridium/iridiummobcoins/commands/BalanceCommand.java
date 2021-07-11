@@ -34,12 +34,11 @@ public class BalanceCommand extends Command {
     @Override
     public void execute(CommandSender sender, String[] arguments) {
         Player player = (Player) sender;
-        IridiumMobCoins.getInstance().getDatabaseManager().getUser(player.getUniqueId()).thenAccept(user ->
-                player.sendMessage(StringUtils.color(IridiumMobCoins.getInstance().getMessages().mobcoinsBalance
-                        .replace("%prefix%", IridiumMobCoins.getInstance().getConfiguration().prefix)
-                        .replace("%balance%", String.valueOf(user.getMobcoins()))
-                ))
-        );
+        User user = IridiumMobCoins.getInstance().getDatabaseManager().getUser(player.getUniqueId());
+        player.sendMessage(StringUtils.color(IridiumMobCoins.getInstance().getMessages().mobcoinsBalance
+                .replace("%prefix%", IridiumMobCoins.getInstance().getConfiguration().prefix)
+                .replace("%balance%", String.valueOf(user.getMobcoins()))
+        ));
     }
 
     /**
