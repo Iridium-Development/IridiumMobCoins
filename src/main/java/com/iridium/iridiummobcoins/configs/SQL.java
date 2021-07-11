@@ -1,5 +1,8 @@
 package com.iridium.iridiummobcoins.configs;
 
+import com.iridium.iridiumcore.dependencies.fasterxml.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SQL {
 
     public Driver driver = Driver.SQLITE;

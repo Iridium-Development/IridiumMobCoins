@@ -4,9 +4,11 @@ import com.iridium.iridiumcore.IridiumCore;
 import com.iridium.iridiumcore.utils.NumberFormatter;
 import com.iridium.iridiummobcoins.commands.CommandManager;
 import com.iridium.iridiummobcoins.configs.Configuration;
+import com.iridium.iridiummobcoins.configs.Inventories;
 import com.iridium.iridiummobcoins.configs.Messages;
 import com.iridium.iridiummobcoins.configs.SQL;
 import com.iridium.iridiummobcoins.listeners.EntityDeathListener;
+import com.iridium.iridiummobcoins.listeners.InventoryClickListener;
 import com.iridium.iridiummobcoins.listeners.PlayerJoinListener;
 import com.iridium.iridiummobcoins.managers.DatabaseManager;
 import com.iridium.iridiummobcoins.placeholders.ClipPlaceholderAPI;
@@ -28,6 +30,7 @@ public class IridiumMobCoins extends IridiumCore {
     private Configuration configuration;
     private Messages messages;
     private SQL sql;
+    private Inventories inventories;
 
     @Override
     public void onEnable() {
@@ -70,6 +73,7 @@ public class IridiumMobCoins extends IridiumCore {
         this.configuration = getPersist().load(Configuration.class);
         this.messages = getPersist().load(Messages.class);
         this.sql = getPersist().load(SQL.class);
+        this.inventories = getPersist().load(Inventories.class);
     }
 
     @Override
@@ -77,6 +81,7 @@ public class IridiumMobCoins extends IridiumCore {
         getPersist().save(configuration);
         getPersist().save(messages);
         getPersist().save(sql);
+        getPersist().save(inventories);
     }
 
     @Override
@@ -88,6 +93,7 @@ public class IridiumMobCoins extends IridiumCore {
     public void registerListeners() {
         Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
         Bukkit.getPluginManager().registerEvents(new EntityDeathListener(), this);
+        Bukkit.getPluginManager().registerEvents(new InventoryClickListener(), this);
     }
 
     public NumberFormatter getNumberFormatter() {

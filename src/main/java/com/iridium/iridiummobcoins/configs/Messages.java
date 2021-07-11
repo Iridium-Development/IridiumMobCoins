@@ -1,5 +1,8 @@
 package com.iridium.iridiummobcoins.configs;
 
+import com.iridium.iridiumcore.dependencies.fasterxml.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Messages {
 
     public String reloaded = "%prefix% &7Configuration has been reloaded.";

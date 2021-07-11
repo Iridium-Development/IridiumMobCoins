@@ -19,7 +19,7 @@ public class EntityDeathListener implements Listener {
         Player killer = event.getEntity().getKiller();
         Map<EntityType, Double> mobCoinDropChances = IridiumMobCoins.getInstance().getConfiguration().mobCoinDropChances;
         if (killer != null && mobCoinDropChances.containsKey(event.getEntityType())) {
-            double random = Math.random() * 100;
+            double random = Math.floor(Math.random() * 100) + 1;
             if (random <= mobCoinDropChances.get(event.getEntityType())) {
                 killer.sendMessage(StringUtils.color(IridiumMobCoins.getInstance().getMessages().receivedMobCoinFromKillingMob
                         .replace("%prefix%", IridiumMobCoins.getInstance().getConfiguration().prefix)

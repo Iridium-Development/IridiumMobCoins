@@ -2,6 +2,7 @@ package com.iridium.iridiummobcoins.commands;
 
 import com.iridium.iridiumcore.utils.StringUtils;
 import com.iridium.iridiummobcoins.IridiumMobCoins;
+import com.iridium.iridiummobcoins.gui.MobCoinsGUI;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
@@ -85,7 +86,7 @@ public class CommandManager implements CommandExecutor, TabCompleter {
         if (args.length == 0) {
             if (commandSender instanceof Player) {
                 Player player = (Player) commandSender;
-                //TODO Open MC GUI
+                player.openInventory(new MobCoinsGUI(player).getInventory());
             } else {
                 new HelpCommand().execute(commandSender, args);
             }
