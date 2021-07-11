@@ -3,10 +3,7 @@ package com.iridium.iridiummobcoins;
 import com.iridium.iridiumcore.IridiumCore;
 import com.iridium.iridiumcore.utils.NumberFormatter;
 import com.iridium.iridiummobcoins.commands.CommandManager;
-import com.iridium.iridiummobcoins.configs.Configuration;
-import com.iridium.iridiummobcoins.configs.Inventories;
-import com.iridium.iridiummobcoins.configs.Messages;
-import com.iridium.iridiummobcoins.configs.SQL;
+import com.iridium.iridiummobcoins.configs.*;
 import com.iridium.iridiummobcoins.listeners.EntityDeathListener;
 import com.iridium.iridiummobcoins.listeners.InventoryClickListener;
 import com.iridium.iridiummobcoins.listeners.PlayerJoinListener;
@@ -30,6 +27,7 @@ public class IridiumMobCoins extends IridiumCore {
     private Configuration configuration;
     private Messages messages;
     private SQL sql;
+    private Shop shop;
     private Inventories inventories;
 
     @Override
@@ -74,6 +72,7 @@ public class IridiumMobCoins extends IridiumCore {
         this.messages = getPersist().load(Messages.class);
         this.sql = getPersist().load(SQL.class);
         this.inventories = getPersist().load(Inventories.class);
+        this.shop = getPersist().load(Shop.class);
     }
 
     @Override
@@ -82,6 +81,7 @@ public class IridiumMobCoins extends IridiumCore {
         getPersist().save(messages);
         getPersist().save(sql);
         getPersist().save(inventories);
+        getPersist().save(shop);
     }
 
     @Override

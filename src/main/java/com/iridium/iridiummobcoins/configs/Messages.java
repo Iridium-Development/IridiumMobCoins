@@ -26,4 +26,6 @@ public class Messages {
     public String setPlayerMobCoins = "%prefix% &7You set %player%' MobCoins to %amount%.";
     public String setMobCoins = "%prefix% &7You MobCoins has been set to %amount% by %player%.";
     public String receivedMobCoinFromKillingMob = "%prefix% &7You killed a %entity% and Gained %amount% MobCoin(s)";
+    public String cannotAffordItem = "%prefix% &7You cannot afford this item.";
+    public String boughtItem = "%prefix% &7You bought this item for %mobcoins% MobCoins.";
 }
