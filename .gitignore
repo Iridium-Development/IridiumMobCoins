@@ -1,4 +1,33 @@
-# Project exclude paths
-/.gradle/
-/build/
-/build/classes/java/main/
+### IntelliJ IDEA ###
+*.iml
+*.ipr
+out/
+modules.xml
+.idea/
+
+### Eclipse ###
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+### VisualStudio Code ###
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+*.code-workspace
+.history
+.ionide
+
+### Gradle ###
+.gradle
+build/
+!gradle-wrapper.jar
+**/build/
