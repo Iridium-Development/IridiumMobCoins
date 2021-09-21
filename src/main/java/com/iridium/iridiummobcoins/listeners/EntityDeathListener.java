@@ -16,7 +16,8 @@ public class EntityDeathListener implements Listener {
 
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
-        if (!IridiumMobCoins.getInstance().getEnabledWorldList().contains(event.getEntity().getWorld())) return;
+        if (!IridiumMobCoins.getInstance().getConfiguration().enabledWorlds.contains(event.getEntity().getWorld().getName()))
+            return;
         Player killer = event.getEntity().getKiller();
         Map<EntityType, Double> mobCoinDropChances = IridiumMobCoins.getInstance().getConfiguration().mobCoinDropChances;
         if (killer != null && mobCoinDropChances.containsKey(event.getEntityType())) {
