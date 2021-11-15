@@ -25,7 +25,7 @@ dependencies {
     implementation("org.jetbrains", "annotations", "16.0.1")
     implementation("com.iridium", "IridiumCore", "1.3.9")
     implementation("org.bstats", "bstats-bukkit", "2.2.1")
-    implementation("com.github.j256", "ormlite-core", "5.7")
+    implementation("com.j256.ormlite", "ormlite-core", "5.7")
     implementation("com.j256.ormlite", "ormlite-jdbc", "5.7")
     implementation("de.jeff_media", "SpigotUpdateChecker", "1.2.4")
 
