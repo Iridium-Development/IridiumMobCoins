@@ -10,12 +10,8 @@ import com.iridium.iridiummobcoins.listeners.PlayerJoinListener;
 import com.iridium.iridiummobcoins.managers.DatabaseManager;
 import com.iridium.iridiummobcoins.placeholders.ClipPlaceholderAPI;
 import com.iridium.iridiummobcoins.placeholders.MVDWPlaceholderAPI;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 import lombok.Getter;
 import org.bukkit.Bukkit;
-import org.bukkit.World;
 import org.bukkit.plugin.Plugin;
 
 import java.sql.SQLException;
