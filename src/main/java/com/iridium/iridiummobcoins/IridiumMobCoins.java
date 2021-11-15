@@ -33,7 +33,6 @@ public class IridiumMobCoins extends IridiumCore {
     private SQL sql;
     private Shop shop;
     private Inventories inventories;
-    private List<World> enabledWorldList;
 
     @Override
     public void onEnable() {
@@ -61,7 +60,6 @@ public class IridiumMobCoins extends IridiumCore {
                 getLogger().info("Successfully registered placeholders with PlaceholderAPI.");
             }
         }
-        enabledWorldList = configuration.enabledWorlds.stream().map(Bukkit::getWorld).filter(Objects::nonNull).collect(Collectors.toList());
 
         Bukkit.getScheduler().runTaskTimerAsynchronously(this, () -> getDatabaseManager().saveUsers(), 60 * 20, 60 * 20);
 
