@@ -22,15 +22,15 @@ repositories {
 
 dependencies {
     // Dependencies that we want to shade in
-    implementation("org.jetbrains", "annotations", "16.0.1")
+    implementation("org.jetbrains", "annotations", "22.0.0")
     implementation("com.iridium", "IridiumCore", "1.3.9")
     implementation("org.bstats", "bstats-bukkit", "2.2.1")
-    implementation("com.j256.ormlite", "ormlite-core", "5.7")
-    implementation("com.j256.ormlite", "ormlite-jdbc", "5.7")
+    implementation("com.j256.ormlite", "ormlite-core", "6.1")
+    implementation("com.j256.ormlite", "ormlite-jdbc", "6.1")
     implementation("de.jeff_media", "SpigotUpdateChecker", "1.3.0")
 
     // Other dependencies that are not required or already available at runtime
-    compileOnly("org.projectlombok", "lombok", "1.18.20")
+    compileOnly("org.projectlombok", "lombok", "1.18.22")
     compileOnly("org.spigotmc", "spigot-api", "1.17-R0.1-SNAPSHOT")
     compileOnly("me.clip", "placeholderapi", "2.9.2")
     compileOnly("be.maximvdw", "MVdWPlaceholderAPI", "2.1.1-SNAPSHOT") {
@@ -38,7 +38,7 @@ dependencies {
     }
 
     // Enable lombok annotation processing
-    annotationProcessor("org.projectlombok", "lombok", "1.18.20")
+    annotationProcessor("org.projectlombok", "lombok", "1.18.22")
 }
 
 tasks {
@@ -53,10 +53,10 @@ tasks {
         archiveClassifier.set("")
 
         // Relocate dependencies
-        relocate("com.fasterxml.jackson", "com.iridium.iridiumskyblock.dependencies.fasterxml")
-        relocate("com.j256.ormlite", "com.iridium.iridiumskyblock.dependencies.ormlite")
-        relocate("org.bstats", "com.iridium.iridiumskyblock.dependencies.bstats")
-        relocate("de.jeff_media", "com.iridium.iridiumskyblock.dependencies")
+        relocate("com.fasterxml.jackson", "com.iridium.iridiummobcoins.dependencies.fasterxml")
+        relocate("com.j256.ormlite", "com.iridium.iridiummobcoins.dependencies.ormlite")
+        relocate("org.bstats", "com.iridium.iridiummobcoins.dependencies.bstats")
+        relocate("de.jeff_media", "com.iridium.iridiummobcoins.dependencies")
 
         // Remove unnecessary files from the jar
         minimize()
