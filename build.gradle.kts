@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.iridium"
-version = "1.0.4"
+version = "1.0.5"
 description = "IridiumMobCoins"
 
 repositories {
@@ -18,27 +18,28 @@ repositories {
     maven("https://papermc.io/repo/repository/maven-public/")
     maven("https://repo.rosewooddev.io/repository/public/")
     maven("https://hub.jeff-media.com/nexus/repository/jeff-media-public/")
+    mavenCentral()
 }
 
 dependencies {
     // Dependencies that we want to shade in
-    implementation("org.jetbrains", "annotations", "22.0.0")
-    implementation("com.iridium", "IridiumCore", "1.5.1")
-    implementation("org.bstats", "bstats-bukkit", "2.2.1")
-    implementation("com.j256.ormlite", "ormlite-core", "6.1")
-    implementation("com.j256.ormlite", "ormlite-jdbc", "6.1")
-    implementation("de.jeff_media", "SpigotUpdateChecker", "1.3.0")
+    implementation("org.jetbrains:annotations:22.0.0")
+    implementation("com.iridium:IridiumCore:1.3.9")
+    implementation("org.bstats:bstats-bukkit:3.0.0")
+    implementation("com.j256.ormlite:ormlite-core:6.1")
+    implementation("com.j256.ormlite:ormlite-jdbc:6.1")
+    implementation("de.jeff_media:SpigotUpdateChecker:1.3.0")
 
     // Other dependencies that are not required or already available at runtime
-    compileOnly("org.projectlombok", "lombok", "1.18.22")
-    compileOnly("org.spigotmc", "spigot-api", "1.17-R0.1-SNAPSHOT")
-    compileOnly("me.clip", "placeholderapi", "2.9.2")
-    compileOnly("be.maximvdw", "MVdWPlaceholderAPI", "2.1.1-SNAPSHOT") {
+    compileOnly("org.projectlombok:lombok:1.18.22")
+    compileOnly("org.spigotmc:spigot-api:1.18.2-R0.1-SNAPSHOT")
+    compileOnly("me.clip:placeholderapi:2.9.2")
+    compileOnly("be.maximvdw:MVdWPlaceholderAPI:2.1.1-SNAPSHOT") {
         exclude("org.spigotmc")
     }
 
     // Enable lombok annotation processing
-    annotationProcessor("org.projectlombok", "lombok", "1.18.22")
+    annotationProcessor("org.projectlombok:lombok:1.18.22")
 }
 
 tasks {
