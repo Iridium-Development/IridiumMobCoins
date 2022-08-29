@@ -21,5 +21,9 @@ public class Configuration {
             .put(EntityType.CREEPER, 5.00)
             .put(EntityType.ENDERMAN, 5.00)
             .build();
+    public Map<EntityType, Integer> mobCoinDropAmounts = ImmutableMap.<EntityType, Integer>builder()
+            .put(EntityType.CREEPER, 3)
+            .put(EntityType.ENDERMAN, 5)
+            .build();
     public NumberFormatter numberFormatter = new NumberFormatter();
 }

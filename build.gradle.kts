@@ -1,11 +1,11 @@
 plugins {
     java
     `maven-publish`
-    id("com.github.johnrengelman.shadow") version "6.1.0"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 group = "com.iridium"
-version = "1.0.4"
+version = "1.0.5"
 description = "IridiumMobCoins"
 
 repositories {

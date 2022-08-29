@@ -22,13 +22,14 @@ public class EntityDeathListener implements Listener {
         if (killer != null && mobCoinDropChances.containsKey(event.getEntityType())) {
             double random = Math.floor(Math.random() * 100) + 1;
             if (random <= mobCoinDropChances.get(event.getEntityType())) {
+                int amount = IridiumMobCoins.getInstance().getConfiguration().mobCoinDropAmounts.getOrDefault(event.getEntityType(), 1);
                 killer.sendMessage(StringUtils.color(IridiumMobCoins.getInstance().getMessages().receivedMobCoinFromKillingMob
                         .replace("%prefix%", IridiumMobCoins.getInstance().getConfiguration().prefix)
                         .replace("%entity%", WordUtils.capitalizeFully(event.getEntityType().name().toLowerCase().replace("_", " ")))
-                        .replace("%amount%", "1")
+                        .replace("%amount%", String.valueOf(amount))
                 ));
                 User user = IridiumMobCoins.getInstance().getDatabaseManager().getUser(killer.getUniqueId());
-                user.setMobcoins(user.getMobcoins() + 1);
+                user.setMobcoins(user.getMobcoins() + amount);
             }
         }
     }
