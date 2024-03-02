@@ -1,7 +1,7 @@
 plugins {
     java
     `maven-publish`
-    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "com.iridium"
@@ -23,7 +23,7 @@ repositories {
 dependencies {
     // Dependencies that we want to shade in
     implementation("org.jetbrains", "annotations", "22.0.0")
-    implementation("com.iridium", "IridiumCore", "1.8.6")
+    implementation("com.iridium", "IridiumCore", "1.8.7")
     implementation("org.bstats", "bstats-bukkit", "2.2.1")
     implementation("com.j256.ormlite", "ormlite-core", "6.1")
     implementation("com.j256.ormlite", "ormlite-jdbc", "6.1")
@@ -65,6 +65,8 @@ tasks {
     // Set UTF-8 as the encoding
     compileJava {
         options.encoding = "UTF-8"
+        sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+        targetCompatibility = JavaVersion.VERSION_1_8.toString()
     }
 
     // Process Placeholders for the plugin.yml
@@ -75,13 +77,6 @@ tasks {
 
         // Always re-run this task
         outputs.upToDateWhen { false }
-    }
-}
-
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(8))
-        vendor.set(JvmVendorSpec.ADOPTOPENJDK)
     }
 }
 
