@@ -44,7 +44,7 @@ public class SetCommand extends Command {
             return;
         }
         OfflinePlayer offlinePlayer = Bukkit.getServer().getOfflinePlayer(args[1]);
-        if (offlinePlayer.hasPlayedBefore()) {
+        if (offlinePlayer.hasPlayedBefore() || offlinePlayer.isOnline()) {
             User user = IridiumMobCoins.getInstance().getDatabaseManager().getUser(offlinePlayer.getUniqueId());
             user.setMobcoins(Math.max(amount, 0));
             sender.sendMessage(StringUtils.color(IridiumMobCoins.getInstance().getMessages().setPlayerMobCoins
