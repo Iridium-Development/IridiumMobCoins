@@ -1,7 +1,7 @@
 plugins {
     java
     `maven-publish`
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("com.gradleup.shadow") version "8.3.6"
 }
 
 group = "com.iridium"
@@ -11,34 +11,33 @@ description = "IridiumMobCoins"
 repositories {
     maven("https://repo.mvdw-software.com/content/groups/public/")
     maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
-    maven("https://repo.extendedclip.com/content/repositories/placeholderapi/")
+    maven("https://repo.extendedclip.com/releases/")
     maven("https://ci.ender.zone/plugin/repository/everything/")
     maven("https://jitpack.io")
     maven("https://nexus.iridiumdevelopment.net/repository/maven-releases/")
-    maven("https://papermc.io/repo/repository/maven-public/")
+    maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://repo.rosewooddev.io/repository/public/")
-    maven("https://hub.jeff-media.com/nexus/repository/jeff-media-public/")
+    maven("https://repo.jeff-media.com/public/")
 }
 
 dependencies {
     // Dependencies that we want to shade in
-    implementation("org.jetbrains", "annotations", "22.0.0")
-    implementation("com.iridium", "IridiumCore", "1.8.7")
-    implementation("org.bstats", "bstats-bukkit", "2.2.1")
+    implementation("com.iridium", "IridiumCore", "2.0.9")
+    implementation("org.bstats", "bstats-bukkit", "3.1.0")
     implementation("com.j256.ormlite", "ormlite-core", "6.1")
     implementation("com.j256.ormlite", "ormlite-jdbc", "6.1")
-    implementation("de.jeff_media", "SpigotUpdateChecker", "1.3.0")
+    implementation("de.jeff_media", "SpigotUpdateChecker", "1.3.2")
 
     // Other dependencies that are not required or already available at runtime
-    compileOnly("org.projectlombok", "lombok", "1.18.22")
+    compileOnly("org.projectlombok", "lombok", "1.18.38")
     compileOnly("org.spigotmc", "spigot-api", "1.17-R0.1-SNAPSHOT")
-    compileOnly("me.clip", "placeholderapi", "2.9.2")
+    compileOnly("me.clip", "placeholderapi", "2.11.6")
     compileOnly("be.maximvdw", "MVdWPlaceholderAPI", "2.1.1-SNAPSHOT") {
         exclude("org.spigotmc")
     }
 
     // Enable lombok annotation processing
-    annotationProcessor("org.projectlombok", "lombok", "1.18.22")
+    annotationProcessor("org.projectlombok", "lombok", "1.18.38")
 }
 
 tasks {
@@ -49,14 +48,25 @@ tasks {
     }
 
     shadowJar {
+        fun relocate(origin: String) =
+            relocate(origin, "com.iridium.iridiummobcoins.dependencies${origin.substring(origin.lastIndexOf('.'))}")
+
         // Remove the archive classifier suffix
         archiveClassifier.set("")
 
         // Relocate dependencies
-        relocate("com.fasterxml.jackson", "com.iridium.iridiummobcoins.dependencies.fasterxml")
-        relocate("com.j256.ormlite", "com.iridium.iridiummobcoins.dependencies.ormlite")
-        relocate("org.bstats", "com.iridium.iridiummobcoins.dependencies.bstats")
-        relocate("de.jeff_media", "com.iridium.iridiummobcoins.dependencies")
+        relocate("com.iridium.iridiumcore")
+        relocate("com.j256.ormlite")
+        relocate("de.jeff_media")
+
+        // Relocate IridiumCore dependencies
+        relocate("de.tr7zw.changeme.nbtapi")
+        relocate("com.iridium.iridiumcolorapi")
+        relocate("org.yaml.snakeyaml")
+        relocate("io.papermc.lib")
+        relocate("com.cryptomorin.xseries")
+        relocate("com.fasterxml.jackson")
+        relocate("org.apache.commons")
 
         // Remove unnecessary files from the jar
         minimize()
