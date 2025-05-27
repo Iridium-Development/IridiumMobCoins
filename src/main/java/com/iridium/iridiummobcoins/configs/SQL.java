@@ -1,6 +1,6 @@
 package com.iridium.iridiummobcoins.configs;
 
-import com.iridium.iridiumcore.dependencies.fasterxml.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SQL {

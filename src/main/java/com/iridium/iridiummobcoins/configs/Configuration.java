@@ -1,8 +1,8 @@
 package com.iridium.iridiummobcoins.configs;
 
+import com.cryptomorin.xseries.XSound;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.collect.ImmutableMap;
-import com.iridium.iridiumcore.dependencies.fasterxml.annotation.JsonIgnoreProperties;
-import com.iridium.iridiumcore.dependencies.xseries.XSound;
 import com.iridium.iridiumcore.utils.NumberFormatter;
 import java.util.Collections;
 import java.util.List;
