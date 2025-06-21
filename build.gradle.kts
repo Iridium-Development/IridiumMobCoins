@@ -24,6 +24,7 @@ dependencies {
     // Dependencies that we want to shade in
     implementation("com.iridium", "IridiumCore", "2.0.9")
     implementation("org.bstats", "bstats-bukkit", "3.1.0")
+    implementation("org.apache.commons", "commons-text", "1.13.1")
     implementation("com.j256.ormlite", "ormlite-core", "6.1")
     implementation("com.j256.ormlite", "ormlite-jdbc", "6.1")
     implementation("de.jeff_media", "SpigotUpdateChecker", "1.3.2")
