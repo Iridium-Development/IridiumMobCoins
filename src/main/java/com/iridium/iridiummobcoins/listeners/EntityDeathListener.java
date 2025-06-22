@@ -3,7 +3,7 @@ package com.iridium.iridiummobcoins.listeners;
 import com.iridium.iridiumcore.utils.StringUtils;
 import com.iridium.iridiummobcoins.IridiumMobCoins;
 import com.iridium.iridiummobcoins.database.User;
-import org.apache.commons.lang.WordUtils;
+import org.apache.commons.text.WordUtils;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
